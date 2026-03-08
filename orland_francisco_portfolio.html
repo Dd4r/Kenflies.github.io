@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orland Kenneth Francisco — Pilot</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0e1a;
+    --deep: #060810;
+    --gold: #c9a84c;
+    --gold-light: #e8c96a;
+    --silver: #a8b4c8;
+    --white: #f0f4ff;
+    --mist: #1a2035;
+    --accent: #2a3a5c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    overflow-x: hidden;
+  }
+
+  /* STARS BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(200,210,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, rgba(200,210,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 40% 10%, rgba(200,210,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 30%, rgba(200,210,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 55%, rgba(200,210,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 85% 20%, rgba(200,210,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 70%, rgba(200,210,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 80%, rgba(200,210,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 65%, rgba(200,210,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 85%, rgba(200,210,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 90%, rgba(200,210,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 50%, rgba(200,210,255,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 95% 45%, rgba(200,210,255,0.5) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 300px;
+    background: linear-gradient(to bottom, transparent, var(--deep));
+    z-index: 1;
+  }
+
+  .horizon-glow {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 400px;
+    background: radial-gradient(ellipse at center bottom, rgba(201,168,76,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .silhouette-plane {
+    position: absolute;
+    top: 22%;
+    right: 12%;
+    font-size: 4rem;
+    opacity: 0.15;
+    animation: drift 12s ease-in-out infinite;
+    filter: blur(0.5px);
+  }
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0) rotate(-5deg); }
+    50% { transform: translate(-30px, -15px) rotate(-3deg); }
+  }
+
+  .hero-photo-wrapper {
+    position: relative;
+    margin-bottom: 2.5rem;
+    z-index: 2;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-photo-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: conic-gradient(var(--gold), var(--gold-light), var(--gold), transparent, var(--gold));
+    animation: spin 8s linear infinite;
+    z-index: -1;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    border: 4px solid var(--navy);
+    display: block;
+  }
+
+  .rank-badge {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background: var(--gold);
+    color: var(--deep);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.1em;
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 7rem);
+    letter-spacing: 0.08em;
+    line-height: 0.9;
+    color: var(--white);
+    z-index: 2;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .hero-name span {
+    display: block;
+    color: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    color: var(--silver);
+    margin-top: 1rem;
+    z-index: 2;
+    animation: fadeUp 1s 0.4s ease both;
+  }
+
+  .hero-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 1.5rem auto;
+    z-index: 2;
+    animation: fadeUp 1s 0.5s ease both;
+  }
+
+  .hero-tagline {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--silver);
+    max-width: 480px;
+    line-height: 1.6;
+    z-index: 2;
+    animation: fadeUp 1s 0.6s ease both;
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--silver);
+    opacity: 0.6;
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6, 8, 16, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--silver);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  /* SECTIONS */
+  section {
+    position: relative;
+    z-index: 2;
+    padding: 6rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 3rem;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -0.5rem;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--silver);
+    font-style: italic;
+  }
+
+  .about-text strong {
+    color: var(--white);
+    font-style: normal;
+  }
+
+  .contact-card {
+    background: linear-gradient(135deg, var(--mist), var(--accent));
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    padding: 2rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--silver);
+  }
+
+  .contact-item:last-child { border-bottom: none; }
+
+  .contact-icon {
+    color: var(--gold);
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+  }
+
+  /* EXPERIENCE */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3.5rem;
+    animation: fadeLeft 0.8s ease both;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.35rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 12px rgba(201,168,76,0.6);
+  }
+
+  .timeline-date {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.4rem;
+  }
+
+  .timeline-company {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+
+  .timeline-role {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--silver);
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .timeline-desc {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(168,180,200,0.85);
+    font-style: italic;
+    border-left: 2px solid rgba(201,168,76,0.2);
+    padding-left: 1rem;
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .edu-card {
+    background: linear-gradient(135deg, var(--mist), rgba(42,58,92,0.4));
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+
+  .edu-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(201,168,76,0.4);
+  }
+
+  .edu-card::before {
+    content: '✦';
+    position: absolute;
+    top: -1rem;
+    right: 1rem;
+    font-size: 5rem;
+    color: rgba(201,168,76,0.04);
+  }
+
+  .edu-years {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .edu-school {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.06em;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .edu-degree {
+    font-size: 0.9rem;
+    color: var(--silver);
+    font-style: italic;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .skill-tag {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 0.75rem 1.2rem;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--silver);
+    text-transform: uppercase;
+    transition: all 0.3s;
+  }
+
+  .skill-tag:hover {
+    background: rgba(201,168,76,0.15);
+    color: var(--gold-light);
+    border-color: var(--gold);
+  }
+
+  /* LANGUAGES */
+  .lang-grid {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .lang-item {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .lang-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .lang-bar-bg {
+    height: 3px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .lang-bar {
+    height: 100%;
+    background: linear-gradient(to right, var(--gold), var(--gold-light));
+    border-radius: 2px;
+    transition: width 1.5s ease;
+  }
+
+  .lang-level {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--silver);
+    margin-top: 0.4rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* FOOTER */
+  footer {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid rgba(201,168,76,0.1);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: rgba(168,180,200,0.4);
+  }
+
+  footer span { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="horizon-glow"></div>
+  <div class="silhouette-plane">✈</div>
+
+  <div class="hero-photo-wrapper">
+    <!-- Placeholder circle if no image -->
+    <div style="width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,#1a2035,#2a3a5c);border:4px solid #0a0e1a;display:flex;align-items:center;justify-content:center;font-size:3.5rem;">✈</div>
+    <div class="rank-badge">PILOT</div>
+  </div>
+
+  <h1 class="hero-name">
+    Orland Kenneth<span>Francisco</span>
+  </h1>
+  <p class="hero-title">Professional Pilot · Philippine Archipelago</p>
+  <div class="hero-divider"></div>
+  <p class="hero-tagline">Motivated and disciplined aviator with a strong passion for aviation and a commitment to excellence at altitude.</p>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <span>↓</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">OKF</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+  </ul>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="reveal">
+    <p class="section-label">01 — Introduction</p>
+    <h2 class="section-title">About Me</h2>
+  </div>
+  <div class="about-grid reveal">
+    <div>
+      <p class="about-text">
+        I am a <strong>motivated and disciplined aviator</strong> with a deep passion for flight and a career built above the clouds of the Philippine archipelago. From light aircraft tourism to <strong>military operations</strong> and commercial airline service, every hour in the cockpit has sharpened my commitment to safety, precision, and excellence.
+      </p>
+    </div>
+    <div class="contact-card">
+      <div class="contact-item">
+        <span class="contact-icon">📞</span>
+        <span>09913543590</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">✉</span>
+        <span>Kenkenfrancisco5@gmail.com</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <span>Gairan, Bogo City, Cebu</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">🌐</span>
+        <span>Filipino · English</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <p class="section-label">02 — Career</p>
+    <h2 class="section-title">Experience</h2>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-date">2035 — 2040</div>
+      <div class="timeline-company">Philippine Air Force</div>
+      <div class="timeline-role">Air Force Pilot · F-15E Strike Eagle</div>
+      <p class="timeline-desc">
+        Served as a commissioned Military Pilot with the Philippine Air Force for five years, flying the F-15E Strike Eagle on high-priority combat and operational missions across the Philippine archipelago — executing precision air superiority sorties, close air support operations, and strategic defense missions in defense of national sovereignty and territorial integrity.
+      </p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">2020 — 2023</div>
+      <div class="timeline-company">Cebu Pacific Air</div>
+      <div class="timeline-role">Regional First Officer</div>
+      <p class="timeline-desc">
+        Served as a Regional First Officer with Cebu Pacific Air, operating scheduled passenger and cargo flights across the Philippine archipelago. Responsible for the safe and efficient transport of passengers and freight across key domestic routes spanning the Luzon, Visayas, and Mindanao island groups — demonstrating a consistent commitment to operational safety and regulatory compliance.
+      </p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-date">2032 — 2034</div>
+      <div class="timeline-company">Cebu Island Flying</div>
+      <div class="timeline-role">Air Tour Pilot · Light Aircraft</div>
+      <p class="timeline-desc">
+        Operated light aircraft for a regional tourism company, conducting scenic flight tours across Cebu and surrounding islands. Accumulated <strong style="color:var(--gold-light);font-style:normal;">1,500 flight hours</strong> through consistent operations, building a strong foundation in low-altitude navigation, passenger communication, and island airspace management.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <p class="section-label">03 — Academic</p>
+    <h2 class="section-title">Education</h2>
+  </div>
+
+  <div class="edu-grid reveal">
+    <div class="edu-card">
+      <div class="edu-years">2027 — 2031</div>
+      <div class="edu-school">MIT</div>
+      <div class="edu-degree">Massachusetts Institute of Technology<br><em>B.S. Aerospace Engineering</em></div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-years">2021 — 2027</div>
+      <div class="edu-school">Jovencio N. Masong</div>
+      <div class="edu-degree">B.S. Aviation / Aerospace Engineering</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-years">2016 — 2021</div>
+      <div class="edu-school">Bogo Central School III</div>
+      <div class="edu-degree">Secondary Education</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <p class="section-label">04 — Competencies</p>
+    <h2 class="section-title">Skills</h2>
+  </div>
+
+  <div class="skills-grid reveal">
+    <div class="skill-tag">Leadership</div>
+    <div class="skill-tag">Management</div>
+    <div class="skill-tag">Critical Thinking</div>
+    <div class="skill-tag">Negotiation</div>
+    <div class="skill-tag">Creativity</div>
+    <div class="skill-tag">Digital Marketing</div>
+  </div>
+
+  <div style="margin-top: 3rem;" class="reveal">
+    <p class="section-label" style="margin-bottom:1.5rem;">Languages</p>
+    <div class="lang-grid">
+      <div class="lang-item">
+        <div class="lang-name">Filipino</div>
+        <div class="lang-bar-bg"><div class="lang-bar" style="width:100%"></div></div>
+        <div class="lang-level">Native</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">English</div>
+        <div class="lang-bar-bg"><div class="lang-bar" style="width:80%"></div></div>
+        <div class="lang-level">Professional Proficiency</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>✦ &nbsp; <span>Orland Kenneth Francisco</span> &nbsp; · &nbsp; Pilot &nbsp; · &nbsp; Bogo City, Cebu &nbsp; ✦</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Animate lang bars on scroll
+  const langBars = document.querySelectorAll('.lang-bar');
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.width = entry.target.style.width;
+      }
+    });
+  }, { threshold: 0.5 });
+  langBars.forEach(bar => barObserver.observe(bar));
+</script>
+</body>
+</html>
